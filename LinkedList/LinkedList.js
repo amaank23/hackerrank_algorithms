@@ -119,7 +119,6 @@ class LinkedList {
       return node.data;
     } else {
       console.log(this.reversePrint(node.next));
-
       console.log(node.data);
     }
   }
