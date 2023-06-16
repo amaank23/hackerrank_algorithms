@@ -115,12 +115,29 @@ class LinkedList {
     }
   }
   reversePrint(node = this.head) {
-    if (node.next === null) {
-      return node.data;
-    } else {
-      console.log(this.reversePrint(node.next));
-      console.log(node.data);
+    const stack = [];
+    let current = node;
+
+    while (current !== null) {
+      stack.push(current.data);
+      current = current.next;
     }
+
+    while (stack.length > 0) {
+      console.log(stack.pop());
+    }
+  }
+  reverse() {
+    let prev = null;
+    let curr = this.head;
+
+    while (curr !== null) {
+      let nextNode = curr.next;
+      curr.next = prev;
+      prev = curr;
+      curr = nextNode;
+    }
+    this.head = prev;
   }
 }
 
@@ -128,10 +145,12 @@ let list = new LinkedList();
 list.insertNodeAtTail(141);
 list.insertNodeAtTail(302);
 list.insertNodeAtTail(3302);
+list.insertNodeAtTail(455);
 // list.insertNodeAtTail(164);
 // list.insertNodeAtTail(530);
 // list.insertNodeAtTail(474);
 // list.insertNodeAtHead(1456);
 // list.insertNodeAtHead(987);
 // list.insertNodeAtPosition(7853, 3);
-list.reversePrint();
+list.reverse();
+list.printLinkedList();
